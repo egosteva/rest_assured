@@ -7,7 +7,7 @@ import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.is;
 
-public class ReqresHomeworkTests {
+public class ReqresInApiTests {
 
     @Test
     void CheckUsersListTest() {
