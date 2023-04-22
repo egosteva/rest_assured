@@ -87,5 +87,3 @@ public class ReqresInApiTests {
                 .statusCode(204);
     }
 }
-
-
