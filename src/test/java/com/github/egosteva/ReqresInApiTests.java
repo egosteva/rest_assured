@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 public class ReqresInApiTests {
 
     @Test
-    void CheckUsersListTest() {
+    void checkUsersListTest() {
         given()
                 .log().uri()
                 .when()
@@ -27,7 +27,7 @@ public class ReqresInApiTests {
     }
 
     @Test
-    void CreateUserTest() {
+    void createUserTest() {
         String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
         given()
                 .log().all()
@@ -45,7 +45,7 @@ public class ReqresInApiTests {
     }
 
     @Test
-    void UpdateUserTest() {
+    void updateUserTest() {
         String body = "{ \"job\": \"zion resident\" }";
         given()
                 .log().all()
@@ -61,7 +61,7 @@ public class ReqresInApiTests {
     }
 
     @Test
-    void UnsuccessfulRegisterTest() {
+    void unsuccessfulRegisterTest() {
         String body = "{ \"email\": \"sydney@fife\" }";
         given()
                 .log().all()
@@ -77,7 +77,7 @@ public class ReqresInApiTests {
     }
 
     @Test
-    void DeleteUserTest() {
+    void deleteUserTest() {
         given()
                 .log().uri()
                 .when()
