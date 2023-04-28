@@ -1,6 +1,6 @@
-package com.github.egosteva.tests.models;
+package com.github.egosteva.tests.models.pojo;
 
-public class CreateUserResponseModel {
+public class CreateUserResponsePojoModel {
     // {
     //    "name": "morpheus",
     //    "job": "leader",

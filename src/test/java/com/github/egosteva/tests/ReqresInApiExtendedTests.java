@@ -1,7 +1,7 @@
 package com.github.egosteva.tests;
 
-import com.github.egosteva.tests.models.CreateUserBodyModel;
-import com.github.egosteva.tests.models.CreateUserResponseModel;
+import com.github.egosteva.tests.models.pojo.CreateUserBodyPojoModel;
+import com.github.egosteva.tests.models.pojo.CreateUserResponsePojoModel;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,11 +41,11 @@ public class ReqresInApiExtendedTests {
     void createUserWithPojoTest() {
         //      String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
 
-        CreateUserBodyModel createUserBody = new CreateUserBodyModel();
+        CreateUserBodyPojoModel createUserBody = new CreateUserBodyPojoModel();
         createUserBody.setName("morpheus");
         createUserBody.setJob("leader");
 
-        CreateUserResponseModel createUserResponse = given()
+        CreateUserResponsePojoModel createUserResponse = given()
                 .log().all()
                 .body(createUserBody)
                 .contentType(JSON)
@@ -55,7 +55,33 @@ public class ReqresInApiExtendedTests {
                 .log().status()
                 .log().body()
                 .statusCode(201)
-                .extract().as(CreateUserResponseModel.class);
+                .extract().as(CreateUserResponsePojoModel.class);
+        //     .body("name", is("morpheus"))
+        //    .body("job", is("leader"))
+        //        .body(matchesJsonSchemaInClasspath("schemas/createUserResponseSchema.json"));
+        assertThat(createUserResponse.getName()).isEqualTo("morpheus");
+        assertThat(createUserResponse.getJob()).isEqualTo("leader");
+    }
+
+    @Test
+    void createUserWithLombokTest() {
+
+
+        CreateUserBodyPojoModel createUserBody = new CreateUserBodyPojoModel();
+        createUserBody.setName("morpheus");
+        createUserBody.setJob("leader");
+
+        CreateUserResponsePojoModel createUserResponse = given()
+                .log().all()
+                .body(createUserBody)
+                .contentType(JSON)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(201)
+                .extract().as(CreateUserResponsePojoModel.class);
         //     .body("name", is("morpheus"))
         //    .body("job", is("leader"))
         //        .body(matchesJsonSchemaInClasspath("schemas/createUserResponseSchema.json"));
