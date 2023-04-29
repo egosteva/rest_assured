@@ -11,13 +11,10 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
-
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ReqresInApiExtendedTests {
-
 
     @Test
     void createUserTest() {
@@ -35,8 +32,6 @@ public class ReqresInApiExtendedTests {
                 .body("name", is("morpheus"))
                 .body("job", is("leader"))
                 .body(matchesJsonSchemaInClasspath("schemas/createUserResponseSchema.json"));
-
-        ////////////////////////
     }
 
     @Test
@@ -56,9 +51,7 @@ public class ReqresInApiExtendedTests {
                 .log().body()
                 .statusCode(201)
                 .extract().as(CreateUserResponsePojoModel.class);
-        //     .body("name", is("morpheus"))
-        //    .body("job", is("leader"))
-        //        .body(matchesJsonSchemaInClasspath("schemas/createUserResponseSchema.json"));
+
         assertThat(createUserResponse.getName()).isEqualTo("morpheus");
         assertThat(createUserResponse.getJob()).isEqualTo("leader");
     }
@@ -80,9 +73,7 @@ public class ReqresInApiExtendedTests {
                 .log().body()
                 .statusCode(201)
                 .extract().as(CreateUserResponseLombokModel.class);
-        //     .body("name", is("morpheus"))
-        //    .body("job", is("leader"))
-        //        .body(matchesJsonSchemaInClasspath("schemas/createUserResponseSchema.json"));
+
         assertThat(createUserResponse.getName()).isEqualTo("morpheus");
         assertThat(createUserResponse.getJob()).isEqualTo("leader");
     }
