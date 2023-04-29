@@ -9,6 +9,8 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import org.junit.jupiter.api.Test;
 
 import static com.github.egosteva.helpers.CustomAllureListener.withCustomTemplates;
+import static com.github.egosteva.specs.CreateUserSpec.createUserRequestSpec;
+import static com.github.egosteva.specs.CreateUserSpec.createUserResponseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -152,5 +154,27 @@ public class ReqresInApiExtendedTests {
         assertThat(createUserResponse.getName()).isEqualTo("morpheus"));
         step("Check response job", ()->
         assertThat(createUserResponse.getJob()).isEqualTo("leader"));
+    }
+
+    @Test
+    void createUserWithLombokCustomAllureStepsSpescTest() {
+        step("Start test");
+        CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
+        createUserBody.setName("morpheus");
+        createUserBody.setJob("leader");
+
+        CreateUserResponseLombokModel createUserResponse = step("Make request", ()->
+                given(createUserRequestSpec)
+                        .body(createUserBody)
+                        .when()
+                        .post("https://reqres.in/api/users")
+                        .then()
+                        .spec(createUserResponseSpec)
+                        .extract().as(CreateUserResponseLombokModel.class));
+
+        step("Check response name", ()->
+                assertThat(createUserResponse.getName()).isEqualTo("morpheus"));
+        step("Check response job", ()->
+                assertThat(createUserResponse.getJob()).isEqualTo("leader"));
     }
 }
