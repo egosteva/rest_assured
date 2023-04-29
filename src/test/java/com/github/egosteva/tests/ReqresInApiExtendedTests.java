@@ -5,8 +5,11 @@ import com.github.egosteva.tests.models.lombok.CreateUserResponseLombokModel;
 import com.github.egosteva.tests.models.pojo.CreateUserBodyPojoModel;
 import com.github.egosteva.tests.models.pojo.CreateUserResponsePojoModel;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import org.junit.jupiter.api.Test;
 
+import static helpers.CustomAllureListener.withCustomTemplates;
+import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
@@ -76,5 +79,78 @@ public class ReqresInApiExtendedTests {
 
         assertThat(createUserResponse.getName()).isEqualTo("morpheus");
         assertThat(createUserResponse.getJob()).isEqualTo("leader");
+    }
+
+    @Test
+    void createUserWithLombokAllureTest() {
+        CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
+        createUserBody.setName("morpheus");
+        createUserBody.setJob("leader");
+
+        CreateUserResponseLombokModel createUserResponse = given()
+                .filter(new AllureRestAssured())
+                .log().all()
+                .body(createUserBody)
+                .contentType(JSON)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(201)
+                .extract().as(CreateUserResponseLombokModel.class);
+
+        assertThat(createUserResponse.getName()).isEqualTo("morpheus");
+        assertThat(createUserResponse.getJob()).isEqualTo("leader");
+    }
+
+    @Test
+    void createUserWithLombokCustomAllureTest() {
+        CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
+        createUserBody.setName("morpheus");
+        createUserBody.setJob("leader");
+
+        CreateUserResponseLombokModel createUserResponse = given()
+                .filter(withCustomTemplates())
+                .log().all()
+                .body(createUserBody)
+                .contentType(JSON)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(201)
+                .extract().as(CreateUserResponseLombokModel.class);
+
+        assertThat(createUserResponse.getName()).isEqualTo("morpheus");
+        assertThat(createUserResponse.getJob()).isEqualTo("leader");
+    }
+
+    @Test
+    void createUserWithLombokCustomAllureStepsTest() {
+        step("Start test");
+        CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
+        createUserBody.setName("morpheus");
+        createUserBody.setJob("leader");
+
+        CreateUserResponseLombokModel createUserResponse = step("Make request", ()->
+                given()
+                .filter(withCustomTemplates())
+                .log().all()
+                .body(createUserBody)
+                .contentType(JSON)
+                .when()
+                .post("https://reqres.in/api/users")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(201)
+                .extract().as(CreateUserResponseLombokModel.class));
+
+        step("Check response name", ()->
+        assertThat(createUserResponse.getName()).isEqualTo("morpheus"));
+        step("Check response job", ()->
+        assertThat(createUserResponse.getJob()).isEqualTo("leader"));
     }
 }
