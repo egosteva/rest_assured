@@ -1,5 +1,7 @@
 package com.github.egosteva.tests;
 
+import com.github.egosteva.tests.models.lombok.CreateUserBodyLombokModel;
+import com.github.egosteva.tests.models.lombok.CreateUserResponseLombokModel;
 import com.github.egosteva.tests.models.pojo.CreateUserBodyPojoModel;
 import com.github.egosteva.tests.models.pojo.CreateUserResponsePojoModel;
 
@@ -39,8 +41,6 @@ public class ReqresInApiExtendedTests {
 
     @Test
     void createUserWithPojoTest() {
-        //      String body = "{ \"name\": \"morpheus\", \"job\": \"leader\" }";
-
         CreateUserBodyPojoModel createUserBody = new CreateUserBodyPojoModel();
         createUserBody.setName("morpheus");
         createUserBody.setJob("leader");
@@ -65,13 +65,11 @@ public class ReqresInApiExtendedTests {
 
     @Test
     void createUserWithLombokTest() {
-
-
-        CreateUserBodyPojoModel createUserBody = new CreateUserBodyPojoModel();
+        CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
         createUserBody.setName("morpheus");
         createUserBody.setJob("leader");
 
-        CreateUserResponsePojoModel createUserResponse = given()
+        CreateUserResponseLombokModel createUserResponse = given()
                 .log().all()
                 .body(createUserBody)
                 .contentType(JSON)
@@ -81,7 +79,7 @@ public class ReqresInApiExtendedTests {
                 .log().status()
                 .log().body()
                 .statusCode(201)
-                .extract().as(CreateUserResponsePojoModel.class);
+                .extract().as(CreateUserResponseLombokModel.class);
         //     .body("name", is("morpheus"))
         //    .body("job", is("leader"))
         //        .body(matchesJsonSchemaInClasspath("schemas/createUserResponseSchema.json"));
