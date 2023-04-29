@@ -1,4 +1,4 @@
-package com.github.egosteva.tests.models.lombok;
+package com.github.egosteva.models.lombok;
 
 import lombok.Data;
 

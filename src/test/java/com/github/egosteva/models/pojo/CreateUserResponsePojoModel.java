@@ -1,4 +1,4 @@
-package com.github.egosteva.tests.models.pojo;
+package com.github.egosteva.models.pojo;
 
 public class CreateUserResponsePojoModel {
     String name, job, id,createdAt;

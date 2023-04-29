@@ -1,4 +1,4 @@
-package helpers;
+package com.github.egosteva.helpers;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 

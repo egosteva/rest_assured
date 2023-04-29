@@ -1,14 +1,14 @@
 package com.github.egosteva.tests;
 
-import com.github.egosteva.tests.models.lombok.CreateUserBodyLombokModel;
-import com.github.egosteva.tests.models.lombok.CreateUserResponseLombokModel;
-import com.github.egosteva.tests.models.pojo.CreateUserBodyPojoModel;
-import com.github.egosteva.tests.models.pojo.CreateUserResponsePojoModel;
+import com.github.egosteva.models.lombok.CreateUserBodyLombokModel;
+import com.github.egosteva.models.lombok.CreateUserResponseLombokModel;
+import com.github.egosteva.models.pojo.CreateUserBodyPojoModel;
+import com.github.egosteva.models.pojo.CreateUserResponsePojoModel;
 
 import io.qameta.allure.restassured.AllureRestAssured;
 import org.junit.jupiter.api.Test;
 
-import static helpers.CustomAllureListener.withCustomTemplates;
+import static com.github.egosteva.helpers.CustomAllureListener.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
