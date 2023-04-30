@@ -107,9 +107,9 @@ public class ReqresInApiModelsTests {
         step("Check email of the first user in the list", () ->
                 assertThat(dataListResponse.get(0).email).isEqualTo("michael.lawson@reqres.in"));
         step("Check first_name of the first user in the list", () ->
-                assertThat(dataListResponse.get(0).first_name).isEqualTo("Michael"));
+                assertThat(dataListResponse.get(0).firstName).isEqualTo("Michael"));
         step("Check last_name of the first user in the list", () ->
-                assertThat(dataListResponse.get(0).last_name).isEqualTo("Lawson"));
+                assertThat(dataListResponse.get(0).lastName).isEqualTo("Lawson"));
         step("Check avatar of the first user in the list", () ->
                 assertThat(dataListResponse.get(0).avatar).isEqualTo("https://reqres.in/img/faces/7-image.jpg"));
         step("Check support url", () ->
