@@ -10,14 +10,5 @@ public class CheckUsersListResponseLombokModel {
 
     public List<DataResponseLombokModel> data;
 
-  //  public static class DataResponseLombokModel {
-    //    public Integer id;
-      //  public String email, first_name, last_name, avatar;
-   // }
-
     public SupportResponseLombokModel support;
-
-  //  public static class SupportResponseLombokModel {
- //       public String url, text;
-   // }
 }
