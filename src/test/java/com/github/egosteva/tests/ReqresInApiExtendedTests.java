@@ -9,8 +9,8 @@ import io.qameta.allure.restassured.AllureRestAssured;
 import org.junit.jupiter.api.Test;
 
 import static com.github.egosteva.helpers.CustomAllureListener.withCustomTemplates;
-import static com.github.egosteva.specs.CreateUserSpec.createUserRequestSpec;
-import static com.github.egosteva.specs.CreateUserSpec.createUserResponseSpec;
+import static com.github.egosteva.specs.Specifications.requestSpec;
+import static com.github.egosteva.specs.Specifications.createUserResponseSpec;
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static io.restassured.http.ContentType.JSON;
@@ -164,7 +164,7 @@ public class ReqresInApiExtendedTests {
         createUserBody.setJob("leader");
 
         CreateUserResponseLombokModel createUserResponse = step("Make request", ()->
-                given(createUserRequestSpec)
+                given(requestSpec)
                         .body(createUserBody)
                         .when()
                         .post("https://reqres.in/api/users")
