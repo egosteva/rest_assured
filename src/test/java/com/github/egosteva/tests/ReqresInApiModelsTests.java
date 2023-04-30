@@ -95,7 +95,6 @@ public class ReqresInApiModelsTests {
                         .get("/users?page=2")
                         .then()
                         .spec(checkUsersListResponseSpec)
-                        .statusCode(200)
                         .extract().as(CheckUsersListResponseLombokModel.class));
 
         List<DataResponseLombokModel> dataListResponse = checkUsersListResponse.getData();
