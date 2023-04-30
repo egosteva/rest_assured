@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class ReqresInApiModelsTests {
 
     @Test
-    void createUserWithLombokCustomAllureStepsSpescTest() {
+    void createUserModelsTest() {
         CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
         createUserBody.setName("morpheus");
         createUserBody.setJob("leader");
@@ -34,7 +34,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
-    void updateUserLombokTest() {
+    void updateUserModelsTest() {
         UpdateUserBodyLombokModel updateUserBody = new UpdateUserBodyLombokModel();
         updateUserBody.setJob("zion resident");
 
@@ -52,7 +52,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
-    void unsuccessfulRegisterLombokTest() {
+    void unsuccessfulRegisterModelsTest() {
         UnsuccessfulRegisterBodyLombokModel unsuccessfulRegisterBody = new UnsuccessfulRegisterBodyLombokModel();
         unsuccessfulRegisterBody.setEmail("sydney@fife");
 
@@ -70,7 +70,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
-    void deleteUserSpecTest() {
+    void deleteUserModelsTest() {
         step("Make user delete request and check status code", () ->
                 given(requestSpec)
                         .when()
@@ -80,7 +80,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
-    void checkUsersListTest() {
+    void checkUsersListModelsTest() {
         CheckUsersListResponseLombokModel checkUsersListResponse = step("Make get users list request", () ->
                 given(requestSpec)
                         .get("/users?page=2")
