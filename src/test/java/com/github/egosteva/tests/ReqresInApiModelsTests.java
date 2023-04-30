@@ -88,14 +88,13 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
-    @DisplayName("Check Users List")
+    @DisplayName("Check users list")
     void checkUsersListModelsTest() {
         CheckUsersListResponseLombokModel checkUsersListResponse = step("Make get users list request", () ->
                 given(requestSpec)
                         .get("/users?page=2")
                         .then()
                         .spec(checkUsersListResponseSpec)
-                        .statusCode(200)
                         .extract().as(CheckUsersListResponseLombokModel.class));
 
         List<DataResponseLombokModel> dataListResponse = checkUsersListResponse.getData();
