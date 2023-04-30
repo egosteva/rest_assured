@@ -1,6 +1,8 @@
 package com.github.egosteva.tests;
 
 import com.github.egosteva.models.lombok.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -10,9 +12,12 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@DisplayName("Reqres.in API tests")
+@Tag("api")
 public class ReqresInApiModelsTests {
 
     @Test
+    @DisplayName("Create user")
     void createUserModelsTest() {
         CreateUserBodyLombokModel createUserBody = new CreateUserBodyLombokModel();
         createUserBody.setName("morpheus");
@@ -34,6 +39,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
+    @DisplayName("Update user")
     void updateUserModelsTest() {
         UpdateUserBodyLombokModel updateUserBody = new UpdateUserBodyLombokModel();
         updateUserBody.setJob("zion resident");
@@ -52,6 +58,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
+    @DisplayName("Unsuccessful registration")
     void unsuccessfulRegisterModelsTest() {
         UnsuccessfulRegisterBodyLombokModel unsuccessfulRegisterBody = new UnsuccessfulRegisterBodyLombokModel();
         unsuccessfulRegisterBody.setEmail("sydney@fife");
@@ -70,6 +77,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
+    @DisplayName("Delete user")
     void deleteUserModelsTest() {
         step("Make user delete request and check status code", () ->
                 given(requestSpec)
@@ -80,6 +88,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
+    @DisplayName("Check Users List")
     void checkUsersListModelsTest() {
         CheckUsersListResponseLombokModel checkUsersListResponse = step("Make get users list request", () ->
                 given(requestSpec)

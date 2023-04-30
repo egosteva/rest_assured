@@ -46,3 +46,9 @@ tasks.withType(Test) {
         }
     }
 }
+
+task web_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("api")
+    }
+}
