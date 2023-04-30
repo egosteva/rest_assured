@@ -1,4 +1,4 @@
-package com.github.egosteva;
+package com.github.egosteva.tests;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,23 +8,6 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.is;
 
 public class ReqresInApiTests {
-
-    @Test
-    void checkUsersListTest() {
-        given()
-                .log().uri()
-                .when()
-                .get("https://reqres.in/api/users?page=2")
-                .then()
-                .log().status()
-                .log().body()
-                .statusCode(200)
-                .body("page", is(2))
-                .body("data[0].id", is(7))
-                .body("data[0].first_name", is("Michael"))
-                .body("support.url", is("https://reqres.in/#support-heading"))
-                .body(matchesJsonSchemaInClasspath("schemas/usersListResponseSchema.json"));
-    }
 
     @Test
     void createUserTest() {
@@ -85,5 +68,22 @@ public class ReqresInApiTests {
                 .then()
                 .log().status()
                 .statusCode(204);
+    }
+
+    @Test
+    void checkUsersListTest() {
+        given()
+                .log().uri()
+                .when()
+                .get("https://reqres.in/api/users?page=2")
+                .then()
+                .log().status()
+                .log().body()
+                .statusCode(200)
+                .body("page", is(2))
+                .body("data[0].id", is(7))
+                .body("data[0].first_name", is("Michael"))
+                .body("support.url", is("https://reqres.in/#support-heading"))
+                .body(matchesJsonSchemaInClasspath("schemas/usersListResponseSchema.json"));
     }
 }
