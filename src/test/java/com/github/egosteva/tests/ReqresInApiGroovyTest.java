@@ -16,7 +16,7 @@ import static org.hamcrest.Matchers.hasItem;
 public class ReqresInApiGroovyTest {
 
     @Test
-    @DisplayName("Check Users List using Groovy")
+    @DisplayName("Check users list using Groovy")
     void checkUsersListGroovyTest() {
                 step("Make get users list request and check user data", () ->
                 given(requestSpec)

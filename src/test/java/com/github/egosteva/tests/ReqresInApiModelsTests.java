@@ -88,7 +88,7 @@ public class ReqresInApiModelsTests {
     }
 
     @Test
-    @DisplayName("Check Users List")
+    @DisplayName("Check users list")
     void checkUsersListModelsTest() {
         CheckUsersListResponseLombokModel checkUsersListResponse = step("Make get users list request", () ->
                 given(requestSpec)
